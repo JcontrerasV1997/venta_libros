@@ -185,7 +185,12 @@ public class Principal {
 				case 3:
 					System.out.println("\n ******** Seccion Ventas *************");
 					System.out.println("\n ******** Que quiere comprar? *************");
-					venta.recorrido2(listaLibros, recorrido);
+
+					for (int j = 0; j < listaLibros.size(); j++) {
+						recorrido = listaLibros.get(j);
+						System.out.print(recorrido.getId() + "   libro, " + recorrido.getNombreProducto() + ", "
+								+ recorrido.getCantidad() + ",  " + recorrido.getPrecio() + "\n");
+					}
 
 					// Articulos
 					for (int x = 0; x < listaArticulo.size(); x++) {
