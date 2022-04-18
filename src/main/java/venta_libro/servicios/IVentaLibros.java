@@ -1,4 +1,4 @@
-package venta_libro.Servicios;
+package venta_libro.servicios;
 
 import java.util.List;
 

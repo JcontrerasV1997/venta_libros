@@ -2,17 +2,17 @@ package venta_libro.presentacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import venta_libro.Servicios.IVentaLibros;
+import venta_libro.servicios.IVentaLibros;
 import venta_libro.logica.Inventario;
 import venta_libro.modelo.Articulo;
 import venta_libro.modelo.Libro;
 import venta_libro.modelo.Producto;
 import venta_libro.modelo.Revista;
-import venta_libro.Servicios.*;
+import venta_libro.servicios.VentaImplementar;
+
 
 public class Principal {
 	public static void main(String[] args) {
