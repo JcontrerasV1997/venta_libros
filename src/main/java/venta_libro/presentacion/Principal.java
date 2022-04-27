@@ -1,5 +1,6 @@
 package venta_libro.presentacion;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,6 @@ import venta_libro.modelo.Producto;
 import venta_libro.modelo.Revista;
 import venta_libro.servicios.VentaImplementar;
 
-
 public class Principal {
 	public static void main(String[] args) {
 
@@ -22,12 +22,14 @@ public class Principal {
 		Inventario inventario = new Inventario();
 		Producto ventaProducto = new Producto();
 		Libro recorrido = null;
-		Revista recorrido3;
-		Articulo recorrido2;
+		Revista recorrido3 = null;
+		Articulo recorrido2 = null;
 		VentaImplementar venta = new VentaImplementar();
 		List<Libro> listaLibros = new ArrayList<Libro>();
 		List<Articulo> listaArticulo = new ArrayList<Articulo>();
 		List<Revista> listaRevista = new ArrayList<Revista>();
+		SimpleDateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
+
 		Scanner leer = new Scanner(System.in);
 		int lecturaMenu, lecturaMenuAgregar, leeId, opcion = 0, cantidad, cantidadComprar, revisiones, paginas,
 				citaciones, cantActual = 0, id = 0;
@@ -75,10 +77,11 @@ public class Principal {
 						isbn = leer.next();
 
 						id++;
-						Libro libro = new Libro(nombre, autor, editorial, precio, cantidad, id, paginas, isbn);
-						listaLibros.add(libro);
-						mapProductos.put(id, libro);
+						venta.adicionarLibro(nombre, autor, editorial, precio, cantidad, id, paginas, isbn);
 						System.out.println("\n Libro añadido satisfactoriamente");
+						//Libro libro = new Libro(nombre, autor, editorial, precio, cantidad, id, paginas, isbn);
+						//listaLibros.add(libro);
+						//mapProductos.put(id, libro);
 
 						System.out.println("\n Desea Volver al menu principal");
 						opcion = leer.nextInt();
@@ -138,6 +141,7 @@ public class Principal {
 
 						System.out.println("\n Ingrese fecha publicacion");
 						fecha = leer.next();
+						String fechaString=df.format(fecha);
 
 						System.out.println("\n Ingrese la universidad");
 						universidad = leer.next();
@@ -155,56 +159,21 @@ public class Principal {
 						System.out.println("Opcion no validada");
 						break;
 					}
-
 					break;
 				case 2:
 					System.out.println("***** Consultar Productos *****");
-					for (int i = 0; i < columna.length; i++) {
-						System.out.print(columna[i]);
-					}
-
-					// Libros
-					for (int j = 0; j < listaLibros.size(); j++) {
-						recorrido = listaLibros.get(j);
-						System.out.print(recorrido.getId() + "    libro, " + recorrido.getNombreProducto() + ", "
-								+ recorrido.getCantidad() + ",  " + recorrido.getPrecio() + "\n");
-					}
-					// Articulos
-					for (int x = 0; x < listaArticulo.size(); x++) {
-						recorrido2 = listaArticulo.get(x);
-						System.out.print(recorrido2.getId() + "    articulo, " + recorrido2.getNombreProducto() + ", "
-								+ recorrido2.getCantidad() + ",  " + recorrido2.getPrecio() + "\n");
-					}
-					// Revistas
-					for (int y = 0; y < listaRevista.size(); y++) {
-						recorrido3 = listaRevista.get(y);
-						System.out.print(recorrido3.getId() + "    revista" + recorrido3.getNombreProducto() + ", "
-								+ recorrido3.getCantidad() + ",  " + recorrido3.getPrecio() + "\n");
-					}
+					venta.columnas(columna);
+					venta.listarLibros(listaLibros, recorrido);
+					venta.listarArticulos(listaArticulo, recorrido2);
+					venta.listarRevistas(listaRevista, recorrido3);
 					break;
 				case 3:
 					System.out.println("\n ******** Seccion Ventas *************");
 					System.out.println("\n ******** Que quiere comprar? *************");
-
-					for (int j = 0; j < listaLibros.size(); j++) {
-						recorrido = listaLibros.get(j);
-						System.out.print(recorrido.getId() + "   libro, " + recorrido.getNombreProducto() + ", "
-								+ recorrido.getCantidad() + ",  " + recorrido.getPrecio() + "\n");
-					}
-
-					// Articulos
-					for (int x = 0; x < listaArticulo.size(); x++) {
-						recorrido2 = listaArticulo.get(x);
-						System.out.print(recorrido2.getId() + "   articulo, " + recorrido2.getNombreProducto() + ", "
-								+ recorrido2.getCantidad() + ",  " + recorrido2.getPrecio() + "\n");
-					}
-					// Revistas
-					for (int y = 0; y < listaRevista.size(); y++) {
-						recorrido3 = listaRevista.get(y);
-						System.out.print(recorrido3.getId() + "    revista, " + recorrido3.getNombreProducto() + ", "
-								+ recorrido3.getCantidad() + ",  " + recorrido3.getPrecio() + "\n");
-					}
-
+					venta.columnas(columna);
+					venta.listarLibros(listaLibros, recorrido);
+					venta.listarArticulos(listaArticulo, recorrido2);
+					venta.listarRevistas(listaRevista, recorrido3);
 					System.out.println("\n Seleccione el id para comprar del del producto");
 					leeId = leer.nextInt();
 

@@ -15,5 +15,12 @@ public interface  IVentaLibros {
 	public Libro consultarLibro(String libro);
 	public Articulo consultarArticulo(String articulo);
 	public 	Revista consultarRevista(String revista);
+	public void columnas(String[] columnas);
+	public void listarLibros(List<Libro> lista, Libro libro);
+	public void listarArticulos(List<Articulo> lista, Articulo articulo);
+	public void listarRevistas(List<Revista> lista,Revista revista);
+		
+		
+	
 }
 

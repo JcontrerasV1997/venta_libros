@@ -3,16 +3,22 @@ package venta_libro.logica;
 import venta_libro.modelo.Articulo;
 import venta_libro.modelo.Libro;
 import venta_libro.modelo.Revista;
+import venta_libro.persistencia.dao.ArticuloDao;
+import venta_libro.persistencia.dao.LibroDao;
+import venta_libro.persistencia.dao.RevistaDao;
 
-public class GestionLibros {
+public class GestionProducto {
 
-	public GestionLibros() {
+	public GestionProducto() {
 
 	}
 
 	public Libro crearLibro(String nombreProducto, String autor, String editorial, double precio, int cantidad, int id,
 			int numeroPaginas, String isbn) {
+
 		Libro libro = new Libro(nombreProducto, autor, editorial, precio, cantidad, id, numeroPaginas, isbn);
+		LibroDao libroDao = new LibroDao();
+		libroDao.insertarLibro(libro);
 		return libro;
 	}
 
@@ -22,8 +28,11 @@ public class GestionLibros {
 
 	public Articulo crearArticulo(String nombreProducto, String autor, String editorial, double precio, int cantidad,
 			int id, int numeroRevisiones, int numeroCitaciones) {
+
 		Articulo articulo = new Articulo(nombreProducto, autor, editorial, precio, cantidad, id, numeroRevisiones,
 				numeroCitaciones);
+		ArticuloDao articuloDao = new ArticuloDao();
+		articuloDao.insertarArticulo(articulo);
 		return articulo;
 	}
 
@@ -33,8 +42,10 @@ public class GestionLibros {
 
 	public Revista crearRevista(String nombreProducto, String autor, String editorial, double precio, int cantidad,
 			int id, String fechaPublicacion, String universidad) {
-		Revista revista = new Revista(nombreProducto, autor, editorial, precio, cantidad, id, fechaPublicacion,
-				universidad);
+		Revista revista = new Revista(nombreProducto, autor, editorial, precio, cantidad, id, fechaPublicacion,universidad);
+		RevistaDao revistaDao= new RevistaDao();
+		revistaDao.insertarRevista(revista);
+
 		return revista;
 	}
 
