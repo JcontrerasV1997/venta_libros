@@ -1,10 +1,13 @@
 package venta_libro.logica;
 
+import java.util.Iterator;
+
 import venta_libro.modelo.Articulo;
 import venta_libro.modelo.Libro;
 import venta_libro.modelo.Revista;
 import venta_libro.persistencia.dao.ArticuloDao;
 import venta_libro.persistencia.dao.LibroDao;
+import venta_libro.persistencia.dao.ListarDao;
 import venta_libro.persistencia.dao.RevistaDao;
 
 public class GestionProducto {
@@ -42,11 +45,18 @@ public class GestionProducto {
 
 	public Revista crearRevista(String nombreProducto, String autor, String editorial, double precio, int cantidad,
 			int id, String fechaPublicacion, String universidad) {
-		Revista revista = new Revista(nombreProducto, autor, editorial, precio, cantidad, id, fechaPublicacion,universidad);
-		RevistaDao revistaDao= new RevistaDao();
+		Revista revista = new Revista(nombreProducto, autor, editorial, precio, cantidad, id, fechaPublicacion,
+				universidad);
+		RevistaDao revistaDao = new RevistaDao();
 		revistaDao.insertarRevista(revista);
 
 		return revista;
+	}
+
+	public void listarProductos() {
+		ListarDao listar = new ListarDao();
+		listar.listarProductos();
+	
 	}
 
 	public Revista obtenerRevista(String nombre) {

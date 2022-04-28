@@ -14,8 +14,8 @@ public class RevistaDao {
 
 	public void insertarRevista(Revista revista) {
 
-		String query = "INSERT INTO productos(tipoProducto,nombre,autor,editorial,precio,cantidad,numPaginas,isbn,fecha,universidad,numRevisiones,numCitaciones)"
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO productos(tipoProducto,nombre,autor,editorial,precio,cantidad,fecha,universidad)"
+				+ "values(?,?,?,?,?,?,?,?)";
 
 		PreparedStatement ps = this.conexion.getPreparedStatement(query);
 		try {
@@ -25,12 +25,12 @@ public class RevistaDao {
 			ps.setString(4, revista.getEditorial());
 			ps.setDouble(5, revista.getPrecio());
 			ps.setInt(6, revista.getCantidad());
-			ps.setString(9, revista.getFechaPublicacion());
+			ps.setString(7, revista.getFechaPublicacion());
 			ps.setString(8, revista.getUniversidad());
 			ps.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			this.conexion.cerrarPrepared(ps);
 		}
 	}

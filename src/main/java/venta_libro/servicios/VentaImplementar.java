@@ -15,7 +15,7 @@ public class VentaImplementar implements IVentaLibros {
 	public VentaImplementar() {
 		this.gestionProducto = new GestionProducto();
 		this.inventario = new Inventario();
-		
+
 	}
 
 	public void adicionarLibro(String nombreProducto, String autor, String editorial, double precio, int cantidad,
@@ -68,40 +68,16 @@ public class VentaImplementar implements IVentaLibros {
 	}
 
 	@Override
-	public void listarLibros(List<Libro> lista, Libro libro) {
-		for (int j = 0; j < lista.size(); j++) {
-			libro = lista.get(j);
-			System.out.print(libro.getId() + "   libro, " + libro.getNombreProducto() + ", " + libro.getCantidad()
-					+ ",  " + libro.getPrecio() + "\n");
-		}
-
-	}
-
-	@Override
-	public void listarArticulos(List<Articulo> lista, Articulo articulo) {
-		for (int j = 0; j < lista.size(); j++) {
-			articulo = lista.get(j);
-			System.out.print(articulo.getId() + "   libro, " + articulo.getNombreProducto() + ", "
-					+ articulo.getCantidad() + ",  " + articulo.getPrecio() + "\n");
-		}
-
-	}
-
-	@Override
-	public void listarRevistas(List<Revista> lista, Revista revista) {
-		for (int y = 0; y < lista.size(); y++) {
-			revista = lista.get(y);
-			System.out.print(revista.getId() + "    revista" + revista.getNombreProducto() + ", "
-					+ revista.getCantidad() + ",  " + revista.getPrecio() + "\n");
-		}
-
-	}
-
-	@Override
 	public void columnas(String[] columnas) {
 		for (int i = 0; i < columnas.length; i++) {
 			System.out.print(columnas[i]);
 		}
+
+	}
+
+	@Override
+	public void listar() {
+		gestionProducto.listarProductos();
 
 	}
 

@@ -2,6 +2,7 @@ package venta_libro.presentacion;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import venta_libro.servicios.VentaImplementar;
 
 public class Principal {
 	public static void main(String[] args) {
-
 		Map<Integer, Producto> mapProductos = new HashMap<Integer, Producto>();
 		String[] columna = { "Id | ", "Tipo | ", "nombre | ", "Cantidad | ", "Precio \n \n" };
 		Inventario inventario = new Inventario();
@@ -28,13 +28,12 @@ public class Principal {
 		List<Libro> listaLibros = new ArrayList<Libro>();
 		List<Articulo> listaArticulo = new ArrayList<Articulo>();
 		List<Revista> listaRevista = new ArrayList<Revista>();
-		SimpleDateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
 
 		Scanner leer = new Scanner(System.in);
 		int lecturaMenu, lecturaMenuAgregar, leeId, opcion = 0, cantidad, cantidadComprar, revisiones, paginas,
-				citaciones, cantActual = 0, id = 0;
+				citaciones, cantActual = 0;
 		double precio, totalPrecio;
-		String nombre, autor, editorial, fecha, universidad, isbn;
+		String nombre, autor, editorial, universidad, fecha, isbn;
 
 		do {
 			System.out.println("\n \n******Libreria Indra ****** \n");
@@ -48,9 +47,7 @@ public class Principal {
 					lecturaMenuAgregar = leer.nextInt();
 					// Menu Interno
 					switch (lecturaMenuAgregar) {
-
 					case 1:
-
 						// venta.adicionarLibro(null, null, null, opcion, opcion2, null);
 						// venta.consultarLibro(null).getAutor();
 						System.out.println("\n Agregar tipo Libros");
@@ -76,12 +73,12 @@ public class Principal {
 						System.out.println("\n Ingrese el isbn");
 						isbn = leer.next();
 
-						id++;
-						venta.adicionarLibro(nombre, autor, editorial, precio, cantidad, id, paginas, isbn);
+						venta.adicionarLibro(nombre, autor, editorial, precio, cantidad, 1, paginas, isbn);
 						System.out.println("\n Libro añadido satisfactoriamente");
-						//Libro libro = new Libro(nombre, autor, editorial, precio, cantidad, id, paginas, isbn);
-						//listaLibros.add(libro);
-						//mapProductos.put(id, libro);
+						// Libro libro = new Libro(nombre, autor, editorial, precio, cantidad, id,
+						// paginas, isbn);
+						// listaLibros.add(libro);
+						// mapProductos.put(id, libro);
 
 						System.out.println("\n Desea Volver al menu principal");
 						opcion = leer.nextInt();
@@ -110,20 +107,22 @@ public class Principal {
 
 						System.out.println("\n Ingrese numero de citaciones");
 						citaciones = leer.nextInt();
-						id++;
-						Articulo articulo = new Articulo(nombre, autor, editorial, precio, cantidad, id, revisiones,
-								citaciones);
-						listaArticulo.add(articulo);
-						inventario.aumentarArticulo(articulo);
-						mapProductos.put(id, articulo);
+
+						// Articulo articulo = new Articulo(nombre, autor, editorial, precio, cantidad,
+						// id, revisiones,citaciones);
+						// listaArticulo.add(articulo);
+						// inventario.aumentarArticulo(articulo);
+						// mapProductos.put(id, articulo);
+
+						venta.adicionarArticulo(nombre, autor, editorial, precio, cantidad, 2, revisiones, citaciones);
+
 						System.out.println("Articulo añadido sastifactoriamente");
 						System.out.println("\n Desea Volver al menu principal");
 						opcion = leer.nextInt();
 						break;
 					case 3:
-						System.out.println("\n agregar tipo  Revista ");
-						System.out.println("\n Revista");
-
+						System.out.println("\n agregar Revista");
+						
 						System.out.println("\n Ingrese el nombre");
 						nombre = leer.next();
 
@@ -132,7 +131,7 @@ public class Principal {
 
 						System.out.println("\n Ingrese editorial");
 						editorial = leer.next();
-						leer.nextLine();
+
 						System.out.println("\n Ingrese el precio");
 						precio = leer.nextFloat();
 
@@ -141,16 +140,17 @@ public class Principal {
 
 						System.out.println("\n Ingrese fecha publicacion");
 						fecha = leer.next();
-						String fechaString=df.format(fecha);
 
 						System.out.println("\n Ingrese la universidad");
 						universidad = leer.next();
-						id++;
-						Revista revista = new Revista(nombre, autor, editorial, precio, cantidad, id, fecha,
-								universidad);
-						listaRevista.add(revista);
-						inventario.aumentarRevista(revista);
-						mapProductos.put(id, revista);
+
+						// Revista revista = new Revista(nombre, autor, editorial, precio, cantidad, id,
+						// fecha,universidad);
+						// listaRevista.add(revista);
+						// inventario.aumentarRevista(revista);
+						// mapProductos.put(id, revista);
+
+						venta.adicionarRevista(nombre, autor, editorial, precio, cantidad, 3, fecha, universidad);
 						System.out.println("Revista añadida sastifactoriamente");
 						System.out.println("\n Desea Volver al menu principal");
 						opcion = leer.nextInt();
@@ -163,23 +163,19 @@ public class Principal {
 				case 2:
 					System.out.println("***** Consultar Productos *****");
 					venta.columnas(columna);
-					venta.listarLibros(listaLibros, recorrido);
-					venta.listarArticulos(listaArticulo, recorrido2);
-					venta.listarRevistas(listaRevista, recorrido3);
+					venta.listar();
+					
 					break;
 				case 3:
 					System.out.println("\n ******** Seccion Ventas *************");
 					System.out.println("\n ******** Que quiere comprar? *************");
 					venta.columnas(columna);
-					venta.listarLibros(listaLibros, recorrido);
-					venta.listarArticulos(listaArticulo, recorrido2);
-					venta.listarRevistas(listaRevista, recorrido3);
+					venta.listar();
+				
 					System.out.println("\n Seleccione el id para comprar del del producto");
 					leeId = leer.nextInt();
-
 					ventaProducto = null;
 					ventaProducto = mapProductos.get(leeId);
-
 					if (ventaProducto != null) {
 						System.out.println("\n Usted eligio el siguiente producto: \n ");
 						System.out.println(ventaProducto.getNombreProducto() + " \nCantidad en inventario: "
