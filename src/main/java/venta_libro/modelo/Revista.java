@@ -1,14 +1,12 @@
 package venta_libro.modelo;
 
-public class Revista extends Producto{
+public class Revista extends Producto {
 	private String fechaPublicacion;
 	private String universidad;
-	
-	
-	
-	public Revista(String nombreProducto, String autor, String editorial, double precio, int cantidad,int id,
+
+	public Revista(String nombreProducto, String autor, String editorial, double precio, int cantidad, int id,
 			String fechaPublicacion, String universidad) {
-		super(nombreProducto, autor, editorial, precio, cantidad,id);
+		super(nombreProducto, autor, editorial, precio, cantidad, id);
 		this.fechaPublicacion = fechaPublicacion;
 		this.universidad = universidad;
 	}
@@ -18,17 +16,18 @@ public class Revista extends Producto{
 		this.fechaPublicacion = "";
 		this.universidad = new String();
 	}
-	
+
 	public Revista(String fechaPublicacion, String universidad) {
 		super();
 		this.fechaPublicacion = fechaPublicacion;
 		this.universidad = universidad;
 	}
-	
-	public Revista(String nombreProducto, double precio, int cantidad, int id) {
-		super();
-	}
 
+	public Revista(String nombreProducto, double precio, int cantidad, int id) {
+		super(nombreProducto, null, null, precio, cantidad, id);
+		
+
+	}
 
 	public String getFechaPublicacion() {
 		return fechaPublicacion;
@@ -45,5 +44,5 @@ public class Revista extends Producto{
 	public void setUniversidad(String universidad) {
 		this.universidad = universidad;
 	}
-	
+
 }

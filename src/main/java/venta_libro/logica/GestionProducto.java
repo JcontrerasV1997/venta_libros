@@ -56,7 +56,7 @@ public class GestionProducto {
 	public Revista actualizarRevista(String nombreProducto, double precio, int cantidad, int id) {
 		Revista revista = new Revista(nombreProducto, precio, cantidad,id);
 		RevistaDao revistaDao= new RevistaDao();
-		revistaDao.modificarRevista(revista, cantidad);
+		revistaDao.modificarRevista(revista, id);
 		
 		return revista;
 	}

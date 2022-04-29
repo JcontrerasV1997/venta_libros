@@ -80,7 +80,7 @@ public class VentaImplementar implements IVentaLibros {
 
 	@Override
 	public void modificarRevista(String nombreProducto, double precio, int cantidad,int id) {
-		gestionProducto.actualizarRevista(nombreProducto, precio, cantidad,id);
+		Revista re = gestionProducto.actualizarRevista(nombreProducto, precio, cantidad,id);
 	}
 
 	@Override
