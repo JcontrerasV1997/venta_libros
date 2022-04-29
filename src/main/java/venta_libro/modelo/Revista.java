@@ -24,6 +24,11 @@ public class Revista extends Producto{
 		this.fechaPublicacion = fechaPublicacion;
 		this.universidad = universidad;
 	}
+	
+	public Revista(String nombreProducto, double precio, int cantidad, int id) {
+		super();
+	}
+
 
 	public String getFechaPublicacion() {
 		return fechaPublicacion;

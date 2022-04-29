@@ -35,4 +35,27 @@ public class RevistaDao {
 		}
 	}
 
+	public boolean modificarRevista(Revista revista, int id) {
+		String query = "update listar set nombre=?, precio=?,cantidad=? where nombretipo=? and id = ?";
+		boolean exito = false;
+		PreparedStatement ps = this.conexion.getPreparedStatement(query);
+		try {
+			ps.setString(1, revista.getNombreProducto());
+			ps.setDouble(2, revista.getPrecio());
+			ps.setInt(3, revista.getCantidad());
+			ps.setString(4, "REVISTA");
+			ps.setInt(5, revista.getId());
+			ps.execute();
+			exito=true;
+			System.out.println(exito);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.conexion.cerrarPrepared(ps);
+		}
+		
+		return exito;
+
+	}
+
 }

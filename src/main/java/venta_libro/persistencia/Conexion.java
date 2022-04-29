@@ -1,5 +1,6 @@
 package venta_libro.persistencia;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,9 +22,9 @@ public class Conexion {
 			} catch (SQLException throwables) {
 				throwables.printStackTrace();
 
-			} finally {
+			} 
 
-			}
+			
 		}
 		return this.con;
 	}
@@ -66,6 +67,26 @@ public class Conexion {
 		}
 		return ps;
 
+	}
+	
+	public CallableStatement getCallableStatement(String sql) {
+		CallableStatement call = null;
+		try {
+			call = this.con.prepareCall(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return call;
+
+	}
+	
+	public void cerrarCall(CallableStatement call) {
+		try {
+			if (call != null)
+				call.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void cerrarPrepared(PreparedStatement ps) {

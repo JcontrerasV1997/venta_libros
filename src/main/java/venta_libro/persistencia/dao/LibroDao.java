@@ -36,7 +36,4 @@ public class LibroDao {
 			this.conexion.cerrarPrepared(ps);
 		}
 	}
-	
-	
-
 }

@@ -1,7 +1,5 @@
 package venta_libro.servicios;
 
-import java.util.List;
-
 import venta_libro.logica.GestionProducto;
 import venta_libro.logica.Inventario;
 import venta_libro.modelo.Articulo;
@@ -42,31 +40,6 @@ public class VentaImplementar implements IVentaLibros {
 
 	}
 
-	public Libro consultarLibro(String nombreLibro) {
-		if (this.inventario.isLibroDisponible(nombreLibro)) {
-			Libro libro = this.gestionProducto.obtenerLibroNombre(nombreLibro);
-			return libro;
-		}
-		return null;
-
-	}
-
-	public Articulo consultarArticulo(String nombreArticulo) {
-		if (this.inventario.isArticuloDisponible(nombreArticulo)) {
-			Articulo articulo = this.gestionProducto.obtenerArticuloNombre(nombreArticulo);
-			return articulo;
-		}
-		return null;
-	}
-
-	public Revista consultarRevista(String nombreRevista) {
-		if (this.inventario.isRevistaDisponible(nombreRevista)) {
-			Revista revista = this.gestionProducto.obtenerRevista(nombreRevista);
-			return revista;
-		}
-		return null;
-	}
-
 	@Override
 	public void columnas(String[] columnas) {
 		for (int i = 0; i < columnas.length; i++) {
@@ -79,6 +52,41 @@ public class VentaImplementar implements IVentaLibros {
 	public void listar() {
 		gestionProducto.listarProductos();
 
+	}
+
+	@Override
+	public void listarElegido(int id, int cantidadComprar) {
+		gestionProducto.listarElegido(id, cantidadComprar);
+
+	}
+
+	@Override
+	public void actualizarInventario(int cantidad, int id) {
+		gestionProducto.actualizarInventario(cantidad, id);
+
+	}
+
+	@Override
+	public void eliminarProducto(int id) {
+		gestionProducto.eliminarProducto(id);
+
+	}
+
+	@Override
+	public void listarRevista() {
+		gestionProducto.listarRevista();
+
+	}
+
+	@Override
+	public void modificarRevista(String nombreProducto, double precio, int cantidad,int id) {
+		gestionProducto.actualizarRevista(nombreProducto, precio, cantidad,id);
+	}
+
+	@Override
+	public void listarRevistaPorId(int id) {
+	gestionProducto.listarRevistaPorId(id);
+		
 	}
 
 }
